@@ -1,0 +1,289 @@
+/* ===== MR SUIT RESPONSIVE SYSTEM ===== */
+
+/* Desktop & Laptop Refinements (1440px - 1024px) */
+@media (max-width: 1200px) {
+  .nav {
+    gap: 1.6rem;
+    font-size: 0.8rem;
+  }
+  
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet Layout (<= 960px) */
+@media (max-width: 960px) {
+  .burger {
+    display: block;
+  }
+
+  .hdr .hdr-cta {
+    display: none;
+  }
+
+  .nav {
+    position: fixed;
+    inset: var(--hdr) 0 auto 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.4rem;
+    padding: 2rem var(--pad) 2.5rem;
+    background: var(--ivory);
+    transform: translateY(-150%);
+    transition: transform 0.45s var(--ease), box-shadow 0.45s;
+    box-shadow: 0 16px 32px rgba(17, 17, 17, 0.12);
+    border-bottom: 1px solid var(--border);
+    max-height: calc(100vh - var(--hdr));
+    overflow-y: auto;
+  }
+
+  .nav.open {
+    transform: translateY(0);
+  }
+
+  .nav a {
+    font-size: 1.1rem;
+    width: 100%;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.05);
+  }
+
+  .nav .mobile-enquiry {
+    display: inline-flex;
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .card:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .craft,
+  .store-section,
+  .contact-grid,
+  .feature-split,
+  .foot .g {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .feature-split.reverse {
+    direction: ltr;
+  }
+
+  .why {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .fabric-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem;
+  }
+}
+
+/* Mobile Devices (<= 720px) */
+@media (max-width: 720px) {
+  /* Cinematic Hero Mobile Adaptations */
+  .hero-cinematic {
+    height: 100svh;
+    min-height: 580px;
+  }
+
+  .slide-bg img {
+    object-position: 28% center;
+  }
+
+  .slide-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(17, 17, 17, 0.45) 0%,
+      rgba(17, 17, 17, 0.2) 28%,
+      rgba(17, 17, 17, 0.6) 55%,
+      rgba(17, 17, 17, 0.88) 78%,
+      rgba(17, 17, 17, 0.95) 100%
+    );
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: calc(var(--hdr) + 16px) var(--pad) 56px;
+  }
+
+  .slide-content {
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+  .slide-title {
+    font-size: clamp(2.2rem, 7.8vw, 3.2rem);
+    margin-bottom: 0.9rem;
+  }
+
+  .slide-desc {
+    font-size: 0.98rem;
+    margin-bottom: 1.6rem;
+    max-width: 36ch;
+  }
+
+  .hero-chevron {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero-chevron svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hero-chevron.prev {
+    left: 10px;
+  }
+
+  .hero-chevron.next {
+    right: 10px;
+  }
+
+  .hero-dots {
+    bottom: 22px;
+    gap: 8px;
+  }
+
+  .dot-dash {
+    width: 24px;
+    height: 2.5px;
+  }
+
+  .dot-dash.active {
+    width: 40px;
+  }
+
+  .why {
+    grid-template-columns: 1fr;
+  }
+
+  .fabric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .im-depth-badge {
+    bottom: 16px;
+    left: 16px;
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .im-depth-badge strong {
+    font-size: 1rem;
+  }
+
+  .page-hero {
+    padding-top: calc(var(--hdr) + 36px);
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.2rem, 8vw, 3rem);
+  }
+
+  .contact-info-card {
+    padding: 1.5rem;
+  }
+
+  .foot-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Responsive Story Steps & Lookbook Gallery */
+  .lookbook-grid {
+    grid-template-columns: 1fr;
+    row-gap: 3.5rem;
+  }
+
+  .lookbook-item:nth-child(even) {
+    margin-top: 0;
+  }
+
+  .story-step,
+  .story-step.reverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .story-step.reverse .story-step-media {
+    order: 0;
+  }
+
+  .story-step.reverse .story-step-content {
+    order: 1;
+  }
+
+  .workflow-steps-list {
+    gap: 3.5rem;
+  }
+
+  .fabric-guide-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet refinements */
+@media (max-width: 960px) and (min-width: 721px) {
+  .lookbook-grid {
+    column-gap: 2.2rem;
+    row-gap: 4.5rem;
+  }
+
+  .lookbook-item:nth-child(even) {
+    margin-top: 2rem;
+  }
+
+  .story-step,
+  .story-step.reverse {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .story-step.reverse .story-step-media {
+    order: 0;
+  }
+
+  .story-step.reverse .story-step-content {
+    order: 1;
+  }
+
+  .fabric-guide-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Small Handhelds (<= 390px) */
+@media (max-width: 390px) {
+  :root {
+    --hdr: 74px;
+    --pad: 16px;
+  }
+
+  .logo {
+    font-size: 1.45rem;
+  }
+
+  .btn {
+    padding: 0.8em 1.6em;
+    font-size: 0.78rem;
+  }
+
+  .prod-card {
+    flex: 0 0 260px;
+  }
+}
+

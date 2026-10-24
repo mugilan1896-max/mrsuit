@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bespoke Consultation Enquiry | MR SUIT Chennai</title>
+  <meta name="description" content="Schedule a private bespoke tailoring consultation with MR SUIT in Vadapalani, Chennai. Choose clothing type, occasion, and submit directly via WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- SHARED HEADER -->
+  <header class="hdr" id="hdr">
+    <a class="logo-wrap" href="/" aria-label="MR SUIT home">
+      <img src="/assets/images/mr-suit-logo.png" alt="MR SUIT — Completes your desire" class="logo-img logo-dark" width="138" height="58">
+      <img src="/assets/images/mr-suit-logo-light.png" alt="MR SUIT — Completes your desire" class="logo-img logo-light" width="138" height="58">
+    </a>
+    
+    <nav class="nav" id="nav" aria-label="Main Navigation">
+      <a href="/">Home</a>
+      <a href="/stores/">Stores</a>
+      <a href="/customization/">Customization</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/contact/">Contact</a>
+      <a class="btn solid mobile-enquiry active" href="/enquiry/">Book Consultation</a>
+    </nav>
+    
+    <div class="hdr-actions">
+      <a class="btn solid hdr-cta" href="/enquiry/" style="border-color: var(--luxury-gold); background: var(--luxury-gold); color: #fff;">Enquiry</a>
+      <button class="burger" id="burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="page-hero-inner rv">
+        <span class="eyebrow">Personalized Consultation</span>
+        <h1>Your Perfect Fit Begins Here.</h1>
+        <p class="lede">Reserve your private tailoring session at our Vadapalani salon. Share your requirements below to begin crafting your bespoke garment.</p>
+      </div>
+    </section>
+
+    <!-- ENQUIRY FORM & ATELIER INFO SPLIT -->
+    <section class="wrap">
+      <div class="contact-grid">
+        <!-- FORM CONTAINER -->
+        <div class="rv">
+          <span class="badge-pill">Consultation Request</span>
+          <h2 style="margin-bottom: 0.6rem;">Tailoring Details</h2>
+          <p class="lede" style="margin-bottom: 2rem;">
+            Fill in your preferred garment type and date. Upon submission, this form will open a prefilled WhatsApp message to our master tailoring team.
+          </p>
+
+          <form id="enquiryForm" aria-label="Bespoke Consultation Enquiry Form">
+            <div class="form-group">
+              <label for="clientName">Full Name *</label>
+              <input type="text" id="clientName" name="name" required placeholder="e.g. Ramesh Kumar" autocomplete="name">
+            </div>
+
+            <div class="form-group">
+              <label for="clientPhone">Phone Number *</label>
+              <input type="tel" id="clientPhone" name="phone" required placeholder="e.g. 98765 43210" autocomplete="tel">
+            </div>
+
+            <div class="form-group">
+              <label for="clothingType">Clothing Type</label>
+              <select id="clothingType" name="clothingType">
+                <option value="Two-Piece & Three-Piece Suits">Two-Piece &amp; Three-Piece Suits</option>
+                <option value="Business & Formal Suits">Business &amp; Formal Suits</option>
+                <option value="Tuxedos & Blazers">Tuxedos &amp; Blazers</option>
+                <option value="Custom-Made Shirts & Trousers">Custom-Made Shirts &amp; Trousers</option>
+                <option value="Safari Suits">Safari Suits</option>
+                <option value="Indo-Western Outfits">Indo-Western Outfits</option>
+                <option value="Sherwanis & Wedding Attire">Sherwanis &amp; Wedding Attire</option>
+                <option value="Embroidered Designer Suits">Embroidered Designer Suits</option>
+                <option value="Other Custom Tailoring">Other Custom Tailoring</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="occasion">Occasion / Requirement</label>
+              <select id="occasion" name="occasion">
+                <option value="Wedding &amp; Reception">Wedding &amp; Reception</option>
+                <option value="Corporate / Business Formal">Corporate / Business Formal</option>
+                <option value="Black-Tie / Gala Event">Black-Tie / Gala Event</option>
+                <option value="Smart Casual / Everyday Wear">Smart Casual / Everyday Wear</option>
+                <option value="Other Milestone Celebration">Other Milestone Celebration</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="preferredDate">Preferred Consultation Date (Optional)</label>
+              <input type="date" id="preferredDate" name="date">
+              <span class="form-hint">Let us know if you have a specific date in mind to visit our salon.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="clientMessage">Additional Message or Fit Notes (Optional)</label>
+              <textarea id="clientMessage" name="message" rows="3" placeholder="Tell us about your preferred fabric color, cut, timeline, or any specific requests..."></textarea>
+            </div>
+
+            <div style="margin-top: 0.8rem;">
+              <button class="btn gold btn-arrow" type="submit" style="width: 100%; font-size: 0.85rem; padding: 1.1em 2em;">
+                <span>Send Enquiry via WhatsApp</span>
+                <span class="btn-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+              </button>
+            </div>
+
+            <!-- In-page Status Notice -->
+            <div id="formStatus" class="alert-box" style="display: none;"></div>
+          </form>
+        </div>
+
+        <!-- SIDEBAR / DIRECT ACCESS -->
+        <div class="rv rv-delay-1">
+          <div class="contact-info-card" style="margin-bottom: 2rem;">
+            <span class="eyebrow">Atelier Location</span>
+            <h3 style="margin-bottom: 1rem;">MR SUIT Bespoke Suits</h3>
+            <p style="color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem;">
+              332, Arcot Road, Vadapalani,<br>
+              Chennai – 600026, Tamil Nadu.
+            </p>
+
+            <ul class="links">
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <a href="tel:+919940152793" class="ulink">+91 99401 52793</a>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <a href="tel:+917200197418" class="ulink">+91 72001 97418</a>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href="mailto:mr.suits21@gmail.com" class="ulink">mr.suits21@gmail.com</a>
+              </li>
+            </ul>
+
+            <div class="row" style="margin-top: 1.5rem;">
+              <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=MR+SUIT+332+Arcot+Road+Vadapalani+Chennai+600026">Get Directions &rarr;</a>
+            </div>
+          </div>
+
+          <div style="background: var(--cream); border: 1px solid var(--border); padding: 2rem; border-radius: 2px;">
+            <h4 style="font-family: var(--serif); font-size: 1.35rem; margin-bottom: 0.6rem;">What Happens Next?</h4>
+            <ol style="margin-left: 1.2rem; color: var(--muted); font-size: 0.95rem; line-height: 1.7; display: grid; gap: 0.6rem;">
+              <li>Your enquiry opens on WhatsApp with all requested specifications.</li>
+              <li>Our tailoring team reviews your cloth and occasion preferences.</li>
+              <li>We confirm your appointment time and welcome you to our Vadapalani salon.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SHARED FOOTER -->
+  <footer class="foot">
+    <div class="g">
+      <div>
+        <div class="logo-wrap" style="margin-bottom: 0.8rem;">
+          <img src="/assets/images/mr-suit-logo-light.png" alt="MR SUIT — Completes your desire" class="logo-img logo-light" width="140" height="60">
+        </div>
+        <p class="tagline">Completes Your Desire.</p>
+        <p style="margin-top: 1rem; max-width: 32ch; font-size: 0.95rem; color: #BBB4A4;">
+          Custom tailored menswear house in Vadapalani, Chennai. Crafting bespoke suits, blazers, tuxedos, and wedding formalwear.
+        </p>
+      </div>
+      
+      <div class="foot-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/stores/">Stores</a></li>
+          <li><a href="/customization/">Customization</a></li>
+          <li><a href="/about-us/">About Us</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/enquiry/">Enquiry</a></li>
+        </ul>
+      </div>
+      
+      <div class="foot-contact">
+        <h4>Atelier &amp; Contact</h4>
+        <p>
+          332, Arcot Road, Vadapalani,<br>
+          Chennai – 600026, Tamil Nadu.
+        </p>
+        <p>
+          <a href="tel:+919940152793" style="color: inherit;">+91 99401 52793</a><br>
+          <a href="tel:+917200197418" style="color: inherit;">+91 72001 97418</a><br>
+          <a href="mailto:mr.suits21@gmail.com" style="color: inherit;">mr.suits21@gmail.com</a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="foot-bottom">
+      <small>&copy; <span id="yr"></span> MR SUIT Bespoke Suits. All rights reserved.</small>
+      <small>Vadapalani, Chennai — Completes Your Desire.</small>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

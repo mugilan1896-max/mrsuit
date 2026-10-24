@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MR SUIT | Bespoke Suits in Vadapalani, Chennai</title>
+  <meta name="description" content="MR SUIT — bespoke suits, blazers, tuxedos and wedding formalwear tailored in Vadapalani, Chennai. Completes Your Desire.">
+  <meta property="og:title" content="MR SUIT Bespoke Suits">
+  <meta property="og:description" content="Completes Your Desire.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- SHARED HEADER -->
+  <header class="hdr hdr-home" id="hdr">
+    <a class="logo-wrap" href="/" aria-label="MR SUIT home">
+      <img src="/assets/images/mr-suit-logo.png" alt="MR SUIT — Completes your desire" class="logo-img logo-dark" width="138" height="58">
+      <img src="/assets/images/mr-suit-logo-light.png" alt="MR SUIT — Completes your desire" class="logo-img logo-light" width="138" height="58">
+    </a>
+    
+    <nav class="nav" id="nav" aria-label="Main Navigation">
+      <a class="active" href="/">Home</a>
+      <a href="/stores/">Stores</a>
+      <a href="/customization/">Customization</a>
+      <a href="/about-us/">About Us</a>
+      <a href="/contact/">Contact</a>
+      <a class="btn solid mobile-enquiry" href="/enquiry/">Book Consultation</a>
+    </nav>
+    
+    <div class="hdr-actions">
+      <a class="btn solid hdr-cta" href="/enquiry/">Enquiry</a>
+      <button class="burger" id="burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <!-- CINEMATIC FULL-SCREEN HERO CAROUSEL -->
+    <section class="hero-cinematic" id="homeHero" aria-roledescription="carousel" aria-label="Featured menswear collections">
+      <!-- Slide 01: Signature Collection -->
+      <article class="slide-full on" aria-label="1 of 3">
+        <div class="slide-bg">
+          <img src="/assets/images/hero-wide-01.jpg" alt="Gentleman wearing a bespoke black three-piece suit seated in a sunlit Italian architectural interior">
+        </div>
+        <div class="slide-overlay">
+          <div class="slide-content">
+            <span class="slide-label">SIGNATURE COLLECTION</span>
+            <h1 class="slide-title">Crafted to<br>Perfection.</h1>
+            <p class="slide-desc">Timeless tailoring. Exceptional craftsmanship. Designed exclusively for you.</p>
+            <a class="slide-btn btn-arrow" href="/customization/">
+              <span>EXPLORE COLLECTION</span>
+              <span class="arrow-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Slide 02: Blazer Collection -->
+      <article class="slide-full" aria-label="2 of 3">
+        <div class="slide-bg">
+          <img src="/assets/images/hero-wide-02.jpg" alt="Distinguished gentleman wearing a tailored navy blazer and cream trousers in sunlit architecture">
+        </div>
+        <div class="slide-overlay">
+          <div class="slide-content">
+            <span class="slide-label">BLAZER COLLECTION</span>
+            <h1 class="slide-title">Redefine<br>Your Presence.</h1>
+            <p class="slide-desc">Modern elegance, tailored for every defining moment.</p>
+            <a class="slide-btn btn-arrow" href="/customization/">
+              <span>DISCOVER BLAZERS</span>
+              <span class="arrow-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Slide 03: Evening Collection -->
+      <article class="slide-full" aria-label="3 of 3">
+        <div class="slide-bg">
+          <img src="/assets/images/hero-wide-03.jpg" alt="Gentleman in a bespoke midnight tuxedo with satin lapels in a grand palazzo ballroom">
+        </div>
+        <div class="slide-overlay">
+          <div class="slide-content">
+            <span class="slide-label">EVENING COLLECTION</span>
+            <h1 class="slide-title">Made for<br>Every Occasion.</h1>
+            <p class="slide-desc">Distinctive craftsmanship for the moments that matter.</p>
+            <a class="slide-btn btn-arrow" href="/customization/">
+              <span>EXPLORE FORMALWEAR</span>
+              <span class="arrow-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Minimal Subtle Chevrons -->
+      <button class="hero-chevron prev" id="prev" aria-label="Previous slide">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="hero-chevron next" id="next" aria-label="Next slide">
+        <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+
+      <!-- Minimal Bottom Center Indicators -->
+      <div class="hero-dots" id="heroDots" aria-label="Slide indicators">
+        <button class="dot-dash active" aria-label="Go to slide 1" data-index="0"></button>
+        <button class="dot-dash" aria-label="Go to slide 2" data-index="1"></button>
+        <button class="dot-dash" aria-label="Go to slide 3" data-index="2"></button>
+      </div>
+    </section>
+
+    <!-- OUR COLLECTIONS PREVIEW: 3D EDITORIAL SHOWCASE -->
+    <section class="wrap" id="collections">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Our Sartorial Range</span>
+          <h2>Explore Our Collections</h2>
+        </div>
+        <p class="lede">Discover tailoring that reflects your individuality, from everyday refinement to life's most memorable occasions.</p>
+      </div>
+
+      <div class="cards">
+        <!-- 01: Bespoke Suits -->
+        <article class="card-tilt-3d rv" id="homeCardSuits">
+          <div class="card-editorial">
+            <div class="im">
+              <span class="card-num">01</span>
+              <span class="card-tag">Signature Bespoke</span>
+              <div class="card-glare"></div>
+              <img loading="lazy" src="/assets/images/col-suits.jpg" alt="Bespoke tailored two-piece and three-piece wool suits">
+            </div>
+            <div class="card-body">
+              <h3>Bespoke Suits</h3>
+              <p>Precision-tailored two-piece, three-piece and business suits designed around your individual style.</p>
+              <div class="card-specs">
+                <span class="spec-chip">Two-Piece &amp; Three-Piece</span>
+                <span class="spec-chip">Corporate Business</span>
+                <span class="spec-chip">Anatomical Fit</span>
+              </div>
+              <a class="card-action-btn" href="/customization/#suits">
+                <span>EXPLORE COLLECTION</span>
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02: Premium Blazers -->
+        <article class="card-tilt-3d rv rv-delay-1" id="homeCardBlazers">
+          <div class="card-editorial">
+            <div class="im">
+              <span class="card-num">02</span>
+              <span class="card-tag">Modern Sartorial</span>
+              <div class="card-glare"></div>
+              <img loading="lazy" src="/assets/images/col-blazers.jpg" alt="Tailored Italian wool blazer jacket">
+            </div>
+            <div class="card-body">
+              <h3>Premium Blazers</h3>
+              <p>Refined blazers crafted with attention to structure, comfort and personal expression.</p>
+              <div class="card-specs">
+                <span class="spec-chip">Structured &amp; Unlined</span>
+                <span class="spec-chip">Soft Shoulder</span>
+                <span class="spec-chip">Distinct Weaves</span>
+              </div>
+              <a class="card-action-btn" href="/customization/#blazers">
+                <span>EXPLORE COLLECTION</span>
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03: Wedding & Formalwear -->
+        <article class="card-tilt-3d rv rv-delay-2" id="homeCardWedding">
+          <div class="card-editorial">
+            <div class="im">
+              <span class="card-num">03</span>
+              <span class="card-tag">Milestone Occasions</span>
+              <div class="card-glare"></div>
+              <img loading="lazy" src="/assets/images/col-wedding.jpg" alt="Wedding tuxedos, sherwanis and ceremonial formalwear">
+            </div>
+            <div class="card-body">
+              <h3>Wedding &amp; Formalwear</h3>
+              <p>Distinctive tuxedos, sherwanis and occasion wear tailored for memorable celebrations.</p>
+              <div class="card-specs">
+                <span class="spec-chip">Black-Tie Tuxedos</span>
+                <span class="spec-chip">Bespoke Sherwanis</span>
+                <span class="spec-chip">Indo-Western Attire</span>
+              </div>
+              <a class="card-action-btn" href="/customization/#wedding">
+                <span>EXPLORE COLLECTION</span>
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- VIEW ALL COLLECTIONS CTA -->
+      <div class="rv rv-delay-3" style="text-align: center; margin-top: clamp(2.5rem, 5vw, 4rem);">
+        <a class="btn solid btn-arrow" href="/customization/">
+          <span>VIEW ALL COLLECTIONS</span>
+          <span class="arrow-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- CRAFTSMANSHIP SPOTLIGHT WITH LAYERED 3D DEPTH -->
+    <section class="wrap cust-bg" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="craft">
+        <div class="im rv im-depth-wrap">
+          <img loading="lazy" src="/assets/images/craft-tailor.jpg" alt="Master bespoke tailor measuring and cutting luxury cloth">
+          <div class="im-depth-badge">
+            <svg class="badge-icon" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+            <div>
+              <strong>30+ Measurements</strong>
+              <span>Anatomical Precision Fit</span>
+            </div>
+          </div>
+        </div>
+        <div class="rv rv-delay-1">
+          <span class="eyebrow">Bespoke Tailoring Excellence</span>
+          <h2>Every Detail Matters.</h2>
+          <p class="lede">We believe true luxury lies in the precision of the fit and the integrity of hand craftsmanship.</p>
+          
+          <dl>
+            <dt>Precision Anatomical Fitting</dt>
+            <dd>Cut individually to your unique build, posture, and natural arm swing—never adapted from standard ready-to-wear racks.</dd>
+            
+            <dt>Carefully Sourced Fabrics</dt>
+            <dd>Fine Australian wools, breathable linen blends, and rich formal cloths chosen for impeccable drape and longevity.</dd>
+            
+            <dt>Personalized Sartorial Detailing</dt>
+            <dd>Hand-selected lapels, button stances, silk linings, pick-stitching, and monogramming tailored to your personal signature.</dd>
+          </dl>
+          
+          <div class="row" style="margin-top: 2rem;">
+            <a class="btn solid" href="/about-us/">Our Story &amp; Philosophy</a>
+            <a class="btn" href="/customization/">The 4-Step Process</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FABRIC & CLOTH VAULT: TACTILE LUXURY SHOWCASE -->
+    <section class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Tactile Foundation</span>
+          <h2>Curated Cloth &amp; Weaves</h2>
+        </div>
+        <p class="lede">The foundation of every distinguished suit begins with the cloth. We curate fabrics for breathability, tactile comfort, and year-round elegance in Chennai.</p>
+      </div>
+
+      <div class="fabric-grid">
+        <div class="fabric-card rv">
+          <span class="fabric-tag">Executive &amp; Formal</span>
+          <h3>Pure Merino Wools</h3>
+          <p>Super 120s to 150s pure wools with natural elasticity, wrinkle resilience, and a pristine drape for business authority.</p>
+          <div class="fabric-meta">
+            <span>Weight: 240g – 290g</span>
+            <span>All-Season</span>
+          </div>
+        </div>
+
+        <div class="fabric-card rv rv-delay-1">
+          <span class="fabric-tag">Daytime Elegance</span>
+          <h3>Linen &amp; Tropical Blends</h3>
+          <p>Lightweight, open-weave cloths engineered for Chennai climates, offering effortless ventilation and relaxed luxury.</p>
+          <div class="fabric-meta">
+            <span>Weight: 200g – 240g</span>
+            <span>Warm Climate</span>
+          </div>
+        </div>
+
+        <div class="fabric-card rv rv-delay-2">
+          <span class="fabric-tag">Evening Grandeur</span>
+          <h3>Ceremonial Velvet &amp; Silk</h3>
+          <p>Lustrous deep blacks, midnight navies, and royal jewel tones curated specifically for milestone galas, sherwanis, and tuxedos.</p>
+          <div class="fabric-meta">
+            <span>Weight: 280g – 340g</span>
+            <span>Black-Tie &amp; Wedding</span>
+          </div>
+        </div>
+
+        <div class="fabric-card rv rv-delay-3">
+          <span class="fabric-tag">Sartorial Pairing</span>
+          <h3>Egyptian Giza Cottons</h3>
+          <p>Extra-long staple cotton cloths tailored for custom dress shirts, lightweight safari suits, and refined summer trousers.</p>
+          <div class="fabric-meta">
+            <span>Weight: 120g – 180g</span>
+            <span>Daily Distinction</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUR PILLARS -->
+    <section class="wrap cust-bg" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="why">
+        <div class="why-item rv">
+          <svg viewBox="0 0 32 32"><path d="M4 24 24 4l4 4L8 28H4zM18 10l4 4"/></svg>
+          <h3>Precision Tailoring</h3>
+          <p>Every cut is calculated to enhance your silhouette with natural ease.</p>
+        </div>
+        <div class="why-item rv rv-delay-1">
+          <svg viewBox="0 0 32 32"><path d="M4 8c6-4 8 4 12 0s8 4 12 0v16c-4 4-8-4-12 0s-6-4-12 0z"/></svg>
+          <h3>Quality Cloth</h3>
+          <p>Hand-selected fabrics tested for drape, climate comfort, and resilience.</p>
+        </div>
+        <div class="why-item rv rv-delay-2">
+          <svg viewBox="0 0 32 32"><circle cx="16" cy="11" r="5"/><path d="M6 28c0-6 4-9 10-9s10 3 10 9"/></svg>
+          <h3>Personalized Styling</h3>
+          <p>Collaborative consultation to tailor garments for your personal signature.</p>
+        </div>
+        <div class="why-item rv rv-delay-3">
+          <svg viewBox="0 0 32 32"><path d="M4 22h24M8 22v-5M14 22v-8M20 22v-5M26 22v-8"/></svg>
+          <h3>Fitting Adjustments</h3>
+          <p>Comprehensive basted fittings ensuring a drape that sits without fault.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORE EXPERIENCE SPOTLIGHT -->
+    <section class="store-section">
+      <div class="im rv">
+        <img loading="lazy" src="/assets/images/store-interior.jpg" alt="MR SUIT boutique atelier interior in Vadapalani Chennai">
+      </div>
+      <div class="rv rv-delay-1">
+        <span class="eyebrow">Visit Our Vadapalani Salon</span>
+        <h2>Experience MR SUIT.</h2>
+        <p class="lede">Visit our bespoke salon for an attentive one-on-one consultation, fabric selection, and anatomical measurement session.</p>
+        
+        <address>
+          <strong>MR SUIT Bespoke Suits</strong>
+          332, Arcot Road, Vadapalani,<br>
+          Chennai – 600026, Tamil Nadu.
+        </address>
+        
+        <div class="row">
+          <a class="btn solid" href="/stores/">View Store Details</a>
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=MR+SUIT+332+Arcot+Road+Vadapalani+Chennai+600026">Get Directions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSULTATION CALLOUT BANNER -->
+    <section class="wrap" style="text-align: center; padding: clamp(60px, 8vw, 100px) var(--pad); border-top: 1px solid var(--border);">
+      <div class="rv" style="max-width: 700px; margin: 0 auto;">
+        <span class="eyebrow">Completes Your Desire</span>
+        <h2>Your Perfect Fit Begins Here.</h2>
+        <p class="lede" style="margin: 1.2rem auto 2.2rem;">Whether you require an executive business suit, a tailored blazer, or wedding formalwear, our team is ready to assist your vision.</p>
+        <div class="row" style="justify-content: center;">
+          <a class="btn solid" href="/enquiry/">Book Consultation</a>
+          <a class="btn" href="/contact/">Contact Us Directly</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SHARED FOOTER -->
+  <footer class="foot">
+    <div class="g">
+      <div>
+        <div class="logo-wrap" style="margin-bottom: 0.8rem;">
+          <img src="/assets/images/mr-suit-logo-light.png" alt="MR SUIT — Completes your desire" class="logo-img logo-light" width="140" height="60">
+        </div>
+        <p class="tagline">Completes Your Desire.</p>
+        <p style="margin-top: 1rem; max-width: 32ch; font-size: 0.95rem; color: #BBB4A4;">
+          Custom tailored menswear house in Vadapalani, Chennai. Crafting bespoke suits, blazers, tuxedos, and wedding formalwear.
+        </p>
+      </div>
+      
+      <div class="foot-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/stores/">Stores</a></li>
+          <li><a href="/customization/">Customization</a></li>
+          <li><a href="/about-us/">About Us</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/enquiry/">Enquiry</a></li>
+        </ul>
+      </div>
+      
+      <div class="foot-contact">
+        <h4>Atelier &amp; Contact</h4>
+        <p>
+          332, Arcot Road, Vadapalani,<br>
+          Chennai – 600026, Tamil Nadu.
+        </p>
+        <p>
+          <a href="tel:+919940152793" style="color: inherit;">+91 99401 52793</a><br>
+          <a href="tel:+917200197418" style="color: inherit;">+91 72001 97418</a><br>
+          <a href="mailto:mr.suits21@gmail.com" style="color: inherit;">mr.suits21@gmail.com</a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="foot-bottom">
+      <small>&copy; <span id="yr"></span> MR SUIT Bespoke Suits. All rights reserved.</small>
+      <small>Vadapalani, Chennai — Completes Your Desire.</small>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/carousel.js"></script>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

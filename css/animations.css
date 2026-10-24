@@ -1,0 +1,105 @@
+/* ===== MR SUIT MOTION SYSTEM ===== */
+
+/* Hero Entrance Animations */
+.slide-full .slide-content > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+.slide-full.on .slide-label {
+  animation: heroUp 0.8s var(--ease) 0.12s forwards;
+}
+
+.slide-full.on .slide-title {
+  animation: heroUp 0.85s var(--ease) 0.25s forwards;
+}
+
+.slide-full.on .slide-desc {
+  animation: heroUp 0.85s var(--ease) 0.4s forwards;
+}
+
+.slide-full.on .slide-btn {
+  animation: heroUp 0.9s var(--ease) 0.55s forwards;
+}
+
+@keyframes heroUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroMask {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes progressBar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Scroll Triggered Reveals */
+.rv {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  will-change: opacity, transform;
+}
+
+.rv.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delay classes for grid items */
+.rv-delay-1 { transition-delay: 0.1s; }
+.rv-delay-2 { transition-delay: 0.2s; }
+.rv-delay-3 { transition-delay: 0.3s; }
+.rv-delay-4 { transition-delay: 0.4s; }
+
+/* Subtle Page Fade-in on load */
+body {
+  animation: pageIn 0.5s var(--ease) forwards;
+}
+
+@keyframes pageIn {
+  from { opacity: 0.92; }
+  to { opacity: 1; }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .slide .copy > *,
+  .rv {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .slide .pic {
+    clip-path: none !important;
+  }
+  
+  html {
+    scroll-behavior: auto !important;
+  }
+}
