@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Scroll reveal with IntersectionObserver
-  const revealElements = document.querySelectorAll('.rv');
+  // Scroll reveals (.rv and .rv-curtain) with IntersectionObserver
+  const revealElements = document.querySelectorAll('.rv, .rv-curtain');
   if (revealElements.length > 0 && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, {
-      rootMargin: '60px 0px',
-      threshold: 0.02
+      rootMargin: '40px 0px',
+      threshold: 0.05
     });
 
     revealElements.forEach((el) => {
@@ -328,5 +328,114 @@ document.addEventListener('DOMContentLoaded', () => {
 
   handleLookbookHash();
   window.addEventListener('hashchange', handleLookbookHash);
+
+  // =========================================================
+  // LUXURY SCROLL PARALLAX FOR IN-FRAME MEDIA & WATERMARKS
+  // =========================================================
+  const parallaxFrames = document.querySelectorAll('.parallax-frame');
+  const watermarks = document.querySelectorAll('.story-step-watermark');
+
+  if (!prefersReduced && (parallaxFrames.length > 0 || watermarks.length > 0)) {
+    let ticking = false;
+
+    const updateParallax = () => {
+      const windowHeight = window.innerHeight;
+
+      // In-frame image vertical parallax
+      parallaxFrames.forEach((frame) => {
+        const rect = frame.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < windowHeight) {
+          // Normalize position (-1 at top, +1 at bottom)
+          const factor = ((rect.top + rect.height / 2) - windowHeight / 2) / (windowHeight / 2);
+          const img = frame.querySelector('img');
+          if (img) {
+            img.style.transform = `translateY(${(-factor * 16).toFixed(1)}px) scale(1.04)`;
+          }
+        }
+      });
+
+      // Watermark counter number floating
+      watermarks.forEach((wm) => {
+        const rect = wm.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < windowHeight) {
+          const factor = (rect.top - windowHeight / 2) / (windowHeight / 2);
+          wm.style.transform = `translateY(${(factor * 18).toFixed(1)}px)`;
+        }
+      });
+
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateParallax();
+  }
+
+  // =========================================================
+  // LOOKBOOK INTERACTIVE WEAVE & FABRIC LENS PAN
+  // Subtle cursor-following micro-pan across cloth detailing
+  // =========================================================
+  const lookbookMedias = document.querySelectorAll('.lookbook-media');
+  if (lookbookMedias.length > 0 && !prefersReduced) {
+    lookbookMedias.forEach((media) => {
+      const img = media.querySelector('img');
+      if (!img) return;
+
+      let rafId = null;
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
+
+      const onMouseMove = (e) => {
+        const rect = media.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+
+        // Subtle pan (-14px to +14px)
+        targetX = (x - 0.5) * -24;
+        targetY = (y - 0.5) * -24;
+
+        if (!rafId) {
+          rafId = requestAnimationFrame(updatePan);
+        }
+      };
+
+      const updatePan = () => {
+        currentX += (targetX - currentX) * 0.12;
+        currentY += (targetY - currentY) * 0.12;
+
+        img.style.transform = `scale(1.08) translate(${currentX.toFixed(1)}px, ${currentY.toFixed(1)}px)`;
+
+        if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
+          rafId = requestAnimationFrame(updatePan);
+        } else {
+          rafId = null;
+        }
+      };
+
+      const onMouseLeave = () => {
+        targetX = 0;
+        targetY = 0;
+        img.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+        img.style.transform = 'scale(1.0) translate(0px, 0px)';
+        setTimeout(() => {
+          img.style.transition = '';
+        }, 800);
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      };
+
+      media.addEventListener('mousemove', onMouseMove, { passive: true });
+      media.addEventListener('mouseleave', onMouseLeave, { passive: true });
+    });
+  }
 });
 

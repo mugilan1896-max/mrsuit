@@ -52,11 +52,11 @@
   }
 }
 
-/* Scroll Triggered Reveals */
+/* Scroll Triggered Reveals (Standard Float) */
 .rv {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -70,6 +70,214 @@
 .rv-delay-2 { transition-delay: 0.2s; }
 .rv-delay-3 { transition-delay: 0.3s; }
 .rv-delay-4 { transition-delay: 0.4s; }
+
+/* =========================================================
+   1. ATELIER CURTAIN REVEAL (EDITORIAL CLIP-PATH WIPE)
+   Image unrolls like fine tailoring cloth from top-to-bottom
+   ========================================================= */
+.rv-curtain {
+  position: relative;
+  overflow: hidden;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: clip-path;
+}
+
+.rv-curtain.in {
+  clip-path: inset(0 0 0 0);
+}
+
+.rv-curtain img {
+  transform: scale(1.12);
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.rv-curtain.in img {
+  transform: scale(1.0);
+}
+
+/* Golden Thread Leading Edge Seam on Curtain Reveal */
+.rv-curtain::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--luxury-gold), rgba(255, 255, 255, 0.9), var(--luxury-gold), transparent);
+  box-shadow: 0 0 12px var(--luxury-gold);
+  z-index: 6;
+  opacity: 1;
+  transition: opacity 0.6s ease 1s;
+  pointer-events: none;
+}
+
+.rv-curtain.in::before {
+  opacity: 0;
+}
+
+/* =========================================================
+   2. SILK LUSTER SHEEN SWEEP (HOVER & ENTRANCE)
+   Reflective liquid light sweep across wool and silk fabrics
+   ========================================================= */
+.silk-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.silk-sheen::after {
+  content: "";
+  position: absolute;
+  inset: -50% -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.08) 45%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(200, 160, 77, 0.35) 54%,
+    transparent 68%
+  );
+  transform: translateX(-150%) rotate(15deg);
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.silk-sheen:hover::after {
+  transform: translateX(120%) rotate(15deg);
+}
+
+/* Trigger sheen once on scroll entrance */
+.rv-curtain.in.silk-sheen::after {
+  animation: singleLusterSweep 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+@keyframes singleLusterSweep {
+  0% { transform: translateX(-150%) rotate(15deg); }
+  100% { transform: translateX(140%) rotate(15deg); }
+}
+
+/* =========================================================
+   3. FLOATING ANATOMICAL DEPTH BADGE
+   Gentle luxury levitation on the 30+ Measurements badge
+   ========================================================= */
+.im-depth-badge {
+  animation: floatingBadge 5s ease-in-out infinite !important;
+  will-change: transform;
+}
+
+@keyframes floatingBadge {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.4deg);
+  }
+}
+
+/* =========================================================
+   4. IN-FRAME SCROLL PARALLAX WINDOWS
+   ========================================================= */
+.parallax-frame {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-frame img {
+  height: 118% !important;
+  width: 100% !important;
+  top: -9% !important;
+  position: relative !important;
+  object-fit: cover;
+  will-change: transform;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================================================
+   5. INTERACTIVE WEAVE INSPECTOR BEACON FOR LOOKBOOK
+   ========================================================= */
+.lookbook-media {
+  cursor: crosshair;
+}
+
+.lookbook-media .inspect-weave-pill {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  background: rgba(17, 17, 17, 0.82);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--luxury-gold);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  pointer-events: none;
+}
+
+.lookbook-media:hover .inspect-weave-pill {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.inspect-weave-pill .lens-icon {
+  width: 11px;
+  height: 11px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* =========================================================
+   6. WATERMARK NUMBER DRIFT (4-STEP WORKFLOW)
+   ========================================================= */
+.story-step-watermark {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s;
+  will-change: transform;
+}
+
+.story-step:hover .story-step-watermark {
+  transform: translateX(12px) scale(1.04);
+  color: rgba(200, 160, 77, 0.35);
+}
+
+/* =========================================================
+   7. LUXURY BUTTON LIQUID GOLD GLIDE
+   ========================================================= */
+.btn.solid {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn.solid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.35), transparent);
+  transition: left 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.btn.solid:hover::before {
+  left: 100%;
+}
 
 /* Subtle Page Fade-in on load */
 body {
@@ -90,13 +298,19 @@ body {
   }
   
   .slide .copy > *,
-  .rv {
+  .rv,
+  .rv-curtain {
     opacity: 1 !important;
     transform: none !important;
-  }
-  
-  .slide .pic {
     clip-path: none !important;
+  }
+
+  .rv-curtain img {
+    transform: none !important;
+  }
+
+  .im-depth-badge {
+    animation: none !important;
   }
   
   html {
