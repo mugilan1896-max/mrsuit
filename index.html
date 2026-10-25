@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/assets/images/hero-wide-01.jpg" fetchpriority="high">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/animations.css">
   <link rel="stylesheet" href="/css/responsive.css">
@@ -47,7 +48,7 @@
       <!-- Slide 01: Signature Collection -->
       <article class="slide-full on" aria-label="1 of 3">
         <div class="slide-bg">
-          <img src="/assets/images/hero-wide-01.jpg" alt="Gentleman wearing a bespoke black three-piece suit seated in a sunlit Italian architectural interior">
+          <img src="/assets/images/hero-wide-01.jpg" fetchpriority="high" loading="eager" alt="Gentleman wearing a bespoke black three-piece suit seated in a sunlit Italian architectural interior">
         </div>
         <div class="slide-overlay">
           <div class="slide-content">
@@ -126,77 +127,89 @@
 
       <div class="cards">
         <!-- 01: Bespoke Suits -->
-        <article class="card-tilt-3d rv" id="homeCardSuits">
-          <div class="card-editorial">
-            <div class="im">
-              <span class="card-num">01</span>
-              <span class="card-tag">Signature Bespoke</span>
-              <div class="card-glare"></div>
-              <img loading="lazy" src="/assets/images/col-suits.jpg" alt="Bespoke tailored two-piece and three-piece wool suits">
+        <article class="card-editorial rv" id="homeCardSuits">
+          <div class="im attire-stage" data-attire="suits" tabindex="0" role="button" aria-pressed="false" aria-label="Bespoke Suit 3D Pop-Out Inspection">
+            <span class="card-num">01</span>
+            <span class="card-tag">Signature Bespoke</span>
+            <div class="card-glare"></div>
+            <div class="attire-glow"></div>
+            <img class="attire-bg" loading="lazy" src="/assets/images/col-suits.jpg" alt="Bespoke tailored two-piece and three-piece wool suits">
+            <img class="attire-cutout" loading="lazy" src="/assets/images/col-suits-cutout.png" alt="Bespoke tailored suit attire 3D pop-out">
+            <div class="attire-inspect-badge">
+              <span class="badge-dot"></span>
+              <span class="badge-text">Click to pop forward</span>
             </div>
-            <div class="card-body">
-              <h3>Bespoke Suits</h3>
-              <p>Precision-tailored two-piece, three-piece and business suits designed around your individual style.</p>
-              <div class="card-specs">
-                <span class="spec-chip">Two-Piece &amp; Three-Piece</span>
-                <span class="spec-chip">Corporate Business</span>
-                <span class="spec-chip">Anatomical Fit</span>
-              </div>
-              <a class="card-action-btn" href="/customization/#suits">
-                <span>EXPLORE COLLECTION</span>
-                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
+          </div>
+          <div class="card-body">
+            <h3>Bespoke Suits</h3>
+            <p>Precision-tailored two-piece, three-piece and business suits designed around your individual style.</p>
+            <div class="card-specs">
+              <span class="spec-chip">Two-Piece &amp; Three-Piece</span>
+              <span class="spec-chip">Corporate Business</span>
+              <span class="spec-chip">Anatomical Fit</span>
             </div>
+            <a class="card-action-btn" href="/customization/#suits">
+              <span>EXPLORE COLLECTION</span>
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
           </div>
         </article>
 
         <!-- 02: Premium Blazers -->
-        <article class="card-tilt-3d rv rv-delay-1" id="homeCardBlazers">
-          <div class="card-editorial">
-            <div class="im">
-              <span class="card-num">02</span>
-              <span class="card-tag">Modern Sartorial</span>
-              <div class="card-glare"></div>
-              <img loading="lazy" src="/assets/images/col-blazers.jpg" alt="Tailored Italian wool blazer jacket">
+        <article class="card-editorial rv rv-delay-1" id="homeCardBlazers">
+          <div class="im attire-stage" data-attire="blazers" tabindex="0" role="button" aria-pressed="false" aria-label="Premium Blazer 3D Pop-Out Inspection">
+            <span class="card-num">02</span>
+            <span class="card-tag">Modern Sartorial</span>
+            <div class="card-glare"></div>
+            <div class="attire-glow"></div>
+            <img class="attire-bg" loading="lazy" src="/assets/images/col-blazers.jpg" alt="Tailored Italian wool blazer jacket">
+            <img class="attire-cutout" loading="lazy" src="/assets/images/col-blazers-cutout.png" alt="Tailored Italian wool blazer attire 3D pop-out">
+            <div class="attire-inspect-badge">
+              <span class="badge-dot"></span>
+              <span class="badge-text">Click to pop forward</span>
             </div>
-            <div class="card-body">
-              <h3>Premium Blazers</h3>
-              <p>Refined blazers crafted with attention to structure, comfort and personal expression.</p>
-              <div class="card-specs">
-                <span class="spec-chip">Structured &amp; Unlined</span>
-                <span class="spec-chip">Soft Shoulder</span>
-                <span class="spec-chip">Distinct Weaves</span>
-              </div>
-              <a class="card-action-btn" href="/customization/#blazers">
-                <span>EXPLORE COLLECTION</span>
-                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
+          </div>
+          <div class="card-body">
+            <h3>Premium Blazers</h3>
+            <p>Refined blazers crafted with attention to structure, comfort and personal expression.</p>
+            <div class="card-specs">
+              <span class="spec-chip">Structured &amp; Unlined</span>
+              <span class="spec-chip">Soft Shoulder</span>
+              <span class="spec-chip">Distinct Weaves</span>
             </div>
+            <a class="card-action-btn" href="/customization/#blazers">
+              <span>EXPLORE COLLECTION</span>
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
           </div>
         </article>
 
         <!-- 03: Wedding & Formalwear -->
-        <article class="card-tilt-3d rv rv-delay-2" id="homeCardWedding">
-          <div class="card-editorial">
-            <div class="im">
-              <span class="card-num">03</span>
-              <span class="card-tag">Milestone Occasions</span>
-              <div class="card-glare"></div>
-              <img loading="lazy" src="/assets/images/col-wedding.jpg" alt="Wedding tuxedos, sherwanis and ceremonial formalwear">
+        <article class="card-editorial rv rv-delay-2" id="homeCardWedding">
+          <div class="im attire-stage" data-attire="wedding" tabindex="0" role="button" aria-pressed="false" aria-label="Wedding and Formalwear 3D Pop-Out Inspection">
+            <span class="card-num">03</span>
+            <span class="card-tag">Milestone Occasions</span>
+            <div class="card-glare"></div>
+            <div class="attire-glow"></div>
+            <img class="attire-bg" loading="lazy" src="/assets/images/col-wedding.jpg" alt="Wedding tuxedos, sherwanis and ceremonial formalwear">
+            <img class="attire-cutout" loading="lazy" src="/assets/images/col-wedding-cutout.png" alt="Wedding formalwear and sherwani attire 3D pop-out">
+            <div class="attire-inspect-badge">
+              <span class="badge-dot"></span>
+              <span class="badge-text">Click to pop forward</span>
             </div>
-            <div class="card-body">
-              <h3>Wedding &amp; Formalwear</h3>
-              <p>Distinctive tuxedos, sherwanis and occasion wear tailored for memorable celebrations.</p>
-              <div class="card-specs">
-                <span class="spec-chip">Black-Tie Tuxedos</span>
-                <span class="spec-chip">Bespoke Sherwanis</span>
-                <span class="spec-chip">Indo-Western Attire</span>
-              </div>
-              <a class="card-action-btn" href="/customization/#wedding">
-                <span>EXPLORE COLLECTION</span>
-                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
+          </div>
+          <div class="card-body">
+            <h3>Wedding &amp; Formalwear</h3>
+            <p>Distinctive tuxedos, sherwanis and occasion wear tailored for memorable celebrations.</p>
+            <div class="card-specs">
+              <span class="spec-chip">Black-Tie Tuxedos</span>
+              <span class="spec-chip">Bespoke Sherwanis</span>
+              <span class="spec-chip">Indo-Western Attire</span>
             </div>
+            <a class="card-action-btn" href="/customization/#wedding">
+              <span>EXPLORE COLLECTION</span>
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
           </div>
         </article>
       </div>

@@ -684,30 +684,22 @@ p {
   align-items: stretch;
 }
 
-/* 3D Tilt Card Container */
-.card-tilt-3d {
-  position: relative;
-  transform-style: preserve-3d;
-  perspective: 1200px;
-  will-change: transform;
-  border-radius: 3px;
-}
-
-.card {
-  position: relative;
-  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
-}
+/* =========================================================
+   LUXURY 3D ATTIRE STAGE (SUBJECT POP-OUT SYSTEM)
+   Only the dress moves forward; padding and borders remain anchored
+   ========================================================= */
 
 .card-editorial {
   display: flex;
   flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 3px;
+  border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 10px 28px rgba(17, 17, 17, 0.04);
   height: 100%;
   transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  position: relative;
 }
 
 .card-editorial:hover {
@@ -715,22 +707,137 @@ p {
   box-shadow: 0 20px 48px rgba(17, 17, 17, 0.09), 0 0 24px var(--gold-subtle);
 }
 
-.card-editorial .im {
+.attire-stage {
   position: relative;
   aspect-ratio: 4/5;
   overflow: hidden;
-  background: var(--beige);
+  background: #141312;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  user-select: none;
 }
 
-.card-editorial .im img {
+/* Background Scene Layer (Room, Salon Interior, Floor) */
+.attire-bg {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, filter;
+  z-index: 1;
 }
 
-.card-editorial:hover .im img {
-  transform: scale(1.06);
+/* Ambient Radial Glow beneath the dress */
+.attire-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, rgba(197, 160, 89, 0.22) 0%, rgba(17, 17, 17, 0) 65%);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Foreground Attire Cutout Layer (THE DRESS ONLY) */
+.attire-cutout {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 3;
+  will-change: transform, filter;
+  transform-origin: center center;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3));
+}
+
+/* Floating Luxury Inspection Badge */
+.attire-inspect-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 14px;
+  background: rgba(17, 17, 17, 0.85);
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--luxury-gold);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), background 0.3s, color 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.attire-inspect-badge .badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--luxury-gold);
+  box-shadow: 0 0 8px var(--luxury-gold);
+  animation: beaconPulse 2s infinite ease-in-out;
+}
+
+@keyframes beaconPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
+/* Hover States on Stage */
+.attire-stage:hover .attire-inspect-badge,
+.attire-stage:focus-visible .attire-inspect-badge {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.attire-stage:hover .attire-glow {
+  opacity: 0.8;
+}
+
+.attire-stage:hover .attire-cutout {
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.6)) drop-shadow(0 2px 10px rgba(197, 160, 89, 0.3));
+}
+
+/* ACTIVE POPPED FORWARD STATE (WHEN USER CLICKS) */
+.attire-stage.attire-popped .attire-bg {
+  transform: scale(0.96);
+  filter: brightness(0.68) blur(2.5px) saturate(0.85);
+}
+
+.attire-stage.attire-popped .attire-glow {
+  opacity: 1;
+}
+
+.attire-stage.attire-popped .attire-cutout {
+  filter: drop-shadow(0 35px 48px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 28px rgba(197, 160, 89, 0.5));
+}
+
+.attire-stage.attire-popped .attire-inspect-badge {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  background: rgba(197, 160, 89, 0.95);
+  color: #111111;
+  border-color: #ffffff;
+  font-weight: 600;
+}
+
+.attire-stage.attire-popped .attire-inspect-badge .badge-dot {
+  background: #111111;
+  box-shadow: none;
 }
 
 /* Editorial Floating Badges */

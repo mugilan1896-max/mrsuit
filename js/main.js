@@ -68,70 +68,178 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach((el) => el.classList.add('in'));
   }
 
-  // 3D Perspective Tilt on Hover for Category Cards
-  const tiltCards = document.querySelectorAll('.card-tilt-3d');
+  // =========================================================
+  // LUXURY 3D ATTIRE POP-OUT & SUBJECT SEPARATION ENGINE
+  // Only the dress comes forward; card padding & borders stay anchored
+  // =========================================================
+  const attireStages = document.querySelectorAll('.attire-stage');
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
-  if (tiltCards.length > 0 && !prefersReduced && !isTouchDevice) {
-    tiltCards.forEach((card) => {
+  if (attireStages.length > 0 && !prefersReduced) {
+    attireStages.forEach((stage) => {
+      const cutout = stage.querySelector('.attire-cutout');
+      const bg = stage.querySelector('.attire-bg');
+      const badge = stage.querySelector('.attire-inspect-badge');
+      if (!cutout || !bg) return;
+
+      let isPopped = false;
       let rafId = null;
-      let targetX = 0;
-      let targetY = 0;
-      let currentX = 0;
-      let currentY = 0;
+      let targetRotX = 0;
+      let targetRotY = 0;
+      let currentRotX = 0;
+      let currentRotY = 0;
 
+      // Handle Mouse Movement (Directional Parallax on THE DRESS ONLY)
       const onMouseMove = (e) => {
-        const rect = card.getBoundingClientRect();
+        const rect = stage.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        // Calculate rotation angles (-6 to +6 deg for subtle luxury feel)
-        targetX = ((y - centerY) / centerY) * -6;
-        targetY = ((x - centerX) / centerX) * 6;
-
-        // Glare highlight coordinates
-        const glareX = (x / rect.width) * 100;
-        const glareY = (y / rect.height) * 100;
-        card.style.setProperty('--glare-x', `${glareX}%`);
-        card.style.setProperty('--glare-y', `${glareY}%`);
+        // Subtle rotation angles for the dress (-6 to +6 deg)
+        targetRotX = ((y - centerY) / centerY) * -5;
+        targetRotY = ((x - centerX) / centerX) * 7;
 
         if (!rafId) {
-          rafId = requestAnimationFrame(updateTilt);
+          rafId = requestAnimationFrame(updateParallax);
         }
       };
 
-      const updateTilt = () => {
-        currentX += (targetX - currentX) * 0.12;
-        currentY += (targetY - currentY) * 0.12;
+      const updateParallax = () => {
+        currentRotX += (targetRotX - currentRotX) * 0.14;
+        currentRotY += (targetRotY - currentRotY) * 0.14;
 
-        card.style.transform = `perspective(1000px) rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg) translateY(-4px)`;
+        if (isPopped) {
+          // ACTIVE POP-FORWARD: Dress floats forward in 3D, responds to mouse direction
+          cutout.style.transform = `perspective(1000px) translateZ(85px) scale(1.15) translateY(-14px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+          // Background recedes slightly with gentle opposite shift for realistic depth
+          bg.style.transform = `scale(0.96) translate(${(-currentRotY * 0.35).toFixed(2)}px, ${(currentRotX * 0.35).toFixed(2)}px)`;
+        } else {
+          // HOVER STATE: Elegant gentle lift-off on the dress only
+          cutout.style.transform = `perspective(1000px) translateZ(35px) scale(1.05) translateY(-6px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+          bg.style.transform = `scale(0.98)`;
+        }
 
-        if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
-          rafId = requestAnimationFrame(updateTilt);
+        if (Math.abs(targetRotX - currentRotX) > 0.05 || Math.abs(targetRotY - currentRotY) > 0.05) {
+          rafId = requestAnimationFrame(updateParallax);
         } else {
           rafId = null;
         }
       };
 
       const onMouseLeave = () => {
-        targetX = 0;
-        targetY = 0;
-        card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
-        setTimeout(() => {
-          card.style.transition = '';
-        }, 500);
+        targetRotX = 0;
+        targetRotY = 0;
+        if (!isPopped) {
+          cutout.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+          bg.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+          cutout.style.transform = '';
+          bg.style.transform = '';
+          setTimeout(() => {
+            cutout.style.transition = '';
+            bg.style.transition = '';
+          }, 700);
+        }
         if (rafId) {
           cancelAnimationFrame(rafId);
           rafId = null;
         }
       };
 
-      card.addEventListener('mousemove', onMouseMove, { passive: true });
-      card.addEventListener('mouseleave', onMouseLeave, { passive: true });
+      // Toggle Popped Forward on Click (left vs right side tilt)
+      const togglePopped = (e) => {
+        e.stopPropagation();
+        isPopped = !isPopped;
+
+        // Close any other open attire stages so only one is popped at a time
+        if (isPopped) {
+          attireStages.forEach((other) => {
+            if (other !== stage && other.classList.contains('attire-popped')) {
+              other.classList.remove('attire-popped');
+              other.setAttribute('aria-pressed', 'false');
+              const otherCutout = other.querySelector('.attire-cutout');
+              const otherBg = other.querySelector('.attire-bg');
+              const otherBadgeText = other.querySelector('.attire-inspect-badge .badge-text');
+              if (otherCutout) otherCutout.style.transform = '';
+              if (otherBg) otherBg.style.transform = '';
+              if (otherBadgeText) otherBadgeText.textContent = 'Click to pop forward';
+            }
+          });
+        }
+
+        stage.classList.toggle('attire-popped', isPopped);
+        stage.setAttribute('aria-pressed', isPopped);
+
+        if (badge) {
+          const badgeText = badge.querySelector('.badge-text');
+          if (badgeText) {
+            badgeText.textContent = isPopped ? 'Pop-out Active • Click to reset' : 'Click to pop forward';
+          }
+        }
+
+        cutout.style.transition = 'transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.75s cubic-bezier(0.16, 1, 0.3, 1)';
+        bg.style.transition = 'transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.75s cubic-bezier(0.16, 1, 0.3, 1)';
+
+        if (isPopped) {
+          // If user clicked left side, angle slightly left; if right, angle slightly right
+          const rect = stage.getBoundingClientRect();
+          const clickX = e.clientX - rect.left;
+          const sideAngle = (clickX < rect.width / 2) ? -5 : 5;
+          currentRotY = sideAngle;
+          targetRotY = sideAngle;
+          cutout.style.transform = `perspective(1000px) translateZ(85px) scale(1.15) translateY(-14px) rotateY(${sideAngle}deg)`;
+          bg.style.transform = 'scale(0.96)';
+        } else {
+          currentRotX = 0;
+          currentRotY = 0;
+          targetRotX = 0;
+          targetRotY = 0;
+          cutout.style.transform = '';
+          bg.style.transform = '';
+        }
+
+        setTimeout(() => {
+          cutout.style.transition = '';
+          bg.style.transition = '';
+        }, 750);
+      };
+
+      stage.addEventListener('mousemove', onMouseMove, { passive: true });
+      stage.addEventListener('mouseleave', onMouseLeave, { passive: true });
+      stage.addEventListener('click', togglePopped);
+
+      // Support keyboard accessibility (Enter/Space to toggle)
+      stage.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          togglePopped(e);
+        }
+      });
+    });
+
+    // Close active popped attire if user clicks anywhere outside the cards
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.attire-stage')) {
+        attireStages.forEach((stage) => {
+          if (stage.classList.contains('attire-popped')) {
+            stage.classList.remove('attire-popped');
+            stage.setAttribute('aria-pressed', 'false');
+            const cutout = stage.querySelector('.attire-cutout');
+            const bg = stage.querySelector('.attire-bg');
+            const badgeText = stage.querySelector('.attire-inspect-badge .badge-text');
+            if (cutout) {
+              cutout.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+              cutout.style.transform = '';
+            }
+            if (bg) {
+              bg.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+              bg.style.transform = '';
+            }
+            if (badgeText) badgeText.textContent = 'Click to pop forward';
+          }
+        });
+      }
     });
   }
 

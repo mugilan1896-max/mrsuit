@@ -13,6 +13,7 @@
     const prevBtn = document.getElementById('prev');
 
     const DELAY = 5000; // Auto-slides every 5 seconds
+    const INITIAL_DELAY = 6500; // First image stays visible first for 6.5s before auto-sliding starts
     const LOCK_DURATION = 750;
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -39,15 +40,15 @@
       slides[currentIndex].classList.add('on');
 
       updateDots(currentIndex);
-      startAutoPlay();
+      startAutoPlay(DELAY);
     }
 
-    function startAutoPlay() {
+    function startAutoPlay(delay = DELAY) {
       clearTimeout(timer);
       if (prefersReduced) return;
       timer = setTimeout(() => {
         goToSlide(currentIndex + 1);
-      }, DELAY);
+      }, delay);
     }
 
     function stopAutoPlay() {
@@ -120,9 +121,13 @@
       }
     }, { passive: true });
 
-    // Initial state & start auto-sliding immediately
-    updateDots(currentIndex);
-    startAutoPlay();
+    // Ensure slide 0 is active on page load
+    slides.forEach((s, idx) => {
+      s.classList.toggle('on', idx === 0);
+    });
+    currentIndex = 0;
+    updateDots(0);
+    startAutoPlay(INITIAL_DELAY);
   }
 
   if (document.readyState === 'loading') {
