@@ -72,49 +72,26 @@
 .rv-delay-4 { transition-delay: 0.4s; }
 
 /* =========================================================
-   1. ATELIER CURTAIN REVEAL (EDITORIAL CLIP-PATH WIPE)
-   Image unrolls like fine tailoring cloth from top-to-bottom
+   1. ATELIER LUXURY IMAGE REVEAL & SOFT ZOOM SETTLE
+   Images are always 100% visible, enhanced with elegant transitions
    ========================================================= */
 .rv-curtain {
   position: relative;
   overflow: hidden;
-  clip-path: inset(0 0 100% 0);
-  transition: clip-path 1.25s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: clip-path;
-}
-
-.rv-curtain.in {
-  clip-path: inset(0 0 0 0);
+  border-radius: 3px;
 }
 
 .rv-curtain img {
-  transform: scale(1.12);
-  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
   will-change: transform;
 }
 
-.rv-curtain.in img {
-  transform: scale(1.0);
-}
-
-/* Golden Thread Leading Edge Seam on Curtain Reveal */
-.rv-curtain::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--luxury-gold), rgba(255, 255, 255, 0.9), var(--luxury-gold), transparent);
-  box-shadow: 0 0 12px var(--luxury-gold);
-  z-index: 6;
-  opacity: 1;
-  transition: opacity 0.6s ease 1s;
-  pointer-events: none;
-}
-
-.rv-curtain.in::before {
-  opacity: 0;
+.rv-curtain:hover img {
+  transform: scale(1.05);
 }
 
 /* =========================================================
@@ -187,13 +164,10 @@
 }
 
 .parallax-frame img {
-  height: 118% !important;
-  width: 100% !important;
-  top: -9% !important;
-  position: relative !important;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   will-change: transform;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* =========================================================
