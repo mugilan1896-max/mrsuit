@@ -707,137 +707,110 @@ p {
   box-shadow: 0 20px 48px rgba(17, 17, 17, 0.09), 0 0 24px var(--gold-subtle);
 }
 
-.attire-stage {
+/* =========================================================
+   LUXURY SARTORIAL 3D TILT & FABRIC SPOTLIGHT SHOWCASE
+   Ultra-smooth perspective tilt, fabric weave illumination & silk light sweep
+   ========================================================= */
+
+.card-sartorial {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: border-color 0.4s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.card-media-frame {
   position: relative;
   aspect-ratio: 4/5;
   overflow: hidden;
-  background: #141312;
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  cursor: pointer;
-  user-select: none;
+  background: #11100f;
+  border-radius: 4px 4px 0 0;
+  perspective: 1000px;
 }
 
-/* Background Scene Layer (Room, Salon Interior, Floor) */
-.attire-bg {
-  position: absolute;
-  inset: 0;
+/* Base image styling */
+.card-media-frame .card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, filter;
-  z-index: 1;
+  display: block;
+  transform: scale(1.0);
+  filter: brightness(0.97) contrast(1.02);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+  will-change: transform;
 }
 
-/* Ambient Radial Glow beneath the dress */
-.attire-glow {
+.card-sartorial:hover .card-media-frame .card-img {
+  filter: brightness(1.03) contrast(1.04);
+}
+
+/* Dynamic Interactive Fabric Spotlight (Illuminates Weave around cursor) */
+.card-spotlight {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 45%, rgba(197, 160, 89, 0.22) 0%, rgba(17, 17, 17, 0) 65%);
-  opacity: 0;
-  transition: opacity 0.6s var(--ease);
-  pointer-events: none;
   z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(
+    480px circle at var(--spot-x, 50%) var(--spot-y, 40%),
+    rgba(235, 205, 145, 0.28) 0%,
+    rgba(235, 205, 145, 0.1) 32%,
+    rgba(17, 17, 17, 0) 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  mix-blend-mode: screen;
 }
 
-/* Foreground Attire Cutout Layer (THE DRESS ONLY) */
-.attire-cutout {
+.card-sartorial:hover .card-spotlight {
+  opacity: 1;
+}
+
+/* Cinematic Diagonal Silk Sheen Glide */
+.card-light-sweep {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  left: -150%;
+  width: 80%;
   height: 100%;
-  object-fit: cover;
+  background: linear-gradient(
+    105deg,
+    transparent 15%,
+    rgba(255, 255, 255, 0.04) 30%,
+    rgba(212, 175, 106, 0.28) 50%,
+    rgba(255, 255, 255, 0.45) 52%,
+    rgba(212, 175, 106, 0.28) 54%,
+    transparent 70%
+  );
+  transform: skewX(-24deg);
   pointer-events: none;
   z-index: 3;
-  will-change: transform, filter;
-  transform-origin: center center;
-  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3));
-}
-
-/* Floating Luxury Inspection Badge */
-.attire-inspect-badge {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%) translateY(8px);
-  z-index: 5;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 5px 14px;
-  background: rgba(17, 17, 17, 0.85);
-  border: 1px solid rgba(197, 160, 89, 0.45);
-  border-radius: 20px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  font-family: var(--sans);
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--luxury-gold);
   opacity: 0;
-  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), background 0.3s, color 0.3s;
+}
+
+.card-sartorial:hover .card-light-sweep {
+  animation: silkLightGlide 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes silkLightGlide {
+  0% { left: -150%; opacity: 0; }
+  35% { opacity: 0.95; }
+  100% { left: 200%; opacity: 0; }
+}
+
+/* Subtle Golden Atelier Framing Contour on Hover */
+.card-media-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(197, 160, 89, 0);
+  box-shadow: inset 0 0 20px rgba(17, 17, 17, 0.4);
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+  z-index: 4;
   pointer-events: none;
-  white-space: nowrap;
 }
 
-.attire-inspect-badge .badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--luxury-gold);
-  box-shadow: 0 0 8px var(--luxury-gold);
-  animation: beaconPulse 2s infinite ease-in-out;
-}
-
-@keyframes beaconPulse {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.4); opacity: 1; }
-}
-
-/* Hover States on Stage */
-.attire-stage:hover .attire-inspect-badge,
-.attire-stage:focus-visible .attire-inspect-badge {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.attire-stage:hover .attire-glow {
-  opacity: 0.8;
-}
-
-.attire-stage:hover .attire-cutout {
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.6)) drop-shadow(0 2px 10px rgba(197, 160, 89, 0.3));
-}
-
-/* ACTIVE POPPED FORWARD STATE (WHEN USER CLICKS) */
-.attire-stage.attire-popped .attire-bg {
-  transform: scale(0.96);
-  filter: brightness(0.68) blur(2.5px) saturate(0.85);
-}
-
-.attire-stage.attire-popped .attire-glow {
-  opacity: 1;
-}
-
-.attire-stage.attire-popped .attire-cutout {
-  filter: drop-shadow(0 35px 48px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 28px rgba(197, 160, 89, 0.5));
-}
-
-.attire-stage.attire-popped .attire-inspect-badge {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  background: rgba(197, 160, 89, 0.95);
-  color: #111111;
-  border-color: #ffffff;
-  font-weight: 600;
-}
-
-.attire-stage.attire-popped .attire-inspect-badge .badge-dot {
-  background: #111111;
-  box-shadow: none;
+.card-sartorial:hover .card-media-frame::after {
+  border-color: rgba(197, 160, 89, 0.45);
+  box-shadow: inset 0 0 26px rgba(197, 160, 89, 0.18), inset 0 0 0 1px rgba(197, 160, 89, 0.35);
 }
 
 /* Editorial Floating Badges */
