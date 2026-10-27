@@ -35,7 +35,7 @@ All photorealistic assets reside in `/assets/images/`:
 - `col-blazers.jpg`: Italian wool houndstooth & navy blazer display.
 - `col-wedding.jpg`: Wedding tuxedos and ceremonial formalwear.
 - `craft-tailor.jpg`: Master tailor measuring and hand-cutting luxury cloth.
-- `store-interior.jpg`: Boutique atelier showroom interior.
+- `store-front.jpg`: Vadapalani boutique showroom storefront.
 - `fabric-swatches.jpg`: Wool and cashmere suit fabric swatches.
 
 ## 5. Scripts & Motion
